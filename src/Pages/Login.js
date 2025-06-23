@@ -13,6 +13,7 @@ import LockOutlineIcon from "@mui/icons-material/LockOutline";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../Actions/AuthAction";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
 
@@ -35,6 +36,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (token) {
+      toast.success("User logged in successfully");
       navigate('/users');
     }
     else if(error){

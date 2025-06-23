@@ -29,6 +29,7 @@ import { useNavigate } from "react-router-dom";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { reset } from "../Actions/AuthAction";
 import "../Styles/User.css";
+import { toast } from 'react-toastify';
 
 function User() {
   const dispatch = useDispatch();
@@ -45,8 +46,7 @@ function User() {
 
   const usersPerPage = 5;
 
-  useEffect(() => {
-    console.log("ismodify", isModified);
+  useEffect(() => {   
     if (!(isModified || isDeleted)) {
       dispatch(getUsers(token));
     }
@@ -83,6 +83,7 @@ function User() {
   }
 
   function handleLogout() {
+    toast.info("Logged Out Sucessfully.");
     navigate("/");
     dispatch(reset());
   }

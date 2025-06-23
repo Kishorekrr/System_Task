@@ -44,11 +44,9 @@ const AddEdit_User = () => {
   };
 
   useEffect(() => {
-    console.log("popup", post_created,isEdited,user_data);
-    if ((post_created || isEdited)) {
-      setOpenSnackbar(true);
+    if (post_created || isEdited) {
+      setOpenSnackbar(true);     
     }
-    
 
     const timeout = setTimeout(() => {
       dispatch(reset());
@@ -97,7 +95,7 @@ const AddEdit_User = () => {
       newErrors.firstName = "First name is required.";
       hasError = true;
     } else if (formData.firstName.length < 6) {
-      newErrors.firstName = "First name must be at least 5 characters.";
+      newErrors.firstName = "First name must be at least 6 characters.";
       hasError = true;
     }
 
@@ -157,13 +155,14 @@ const AddEdit_User = () => {
           severity="success"
           variant="filled"
         >
-        {isEdited
-      ? "Form edited successfully!"
-      : post_created
-      ? "Form submitted successfully!"
-      : null}
+          {isEdited
+            ? "Form edited successfully!"
+            : post_created
+            ? "Form submitted successfully!"
+            : null}
         </Alert>
       </Snackbar>
+      
       <Box sx={{ flex: 1, overflowY: "auto", padding: 3 }}>
         <Box
           display="flex"
