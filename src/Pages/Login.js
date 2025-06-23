@@ -30,7 +30,7 @@ const LoginForm = () => {
   const [rememberMe, setRememberMe] = useState(true);
   const { token, error, loading } = useSelector((state) => state.auth);
 
-  console.log(token, error, loading);
+ 
   const Dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,8 +39,7 @@ const LoginForm = () => {
       toast.success("User logged in successfully");
       navigate('/users');
     }
-    else if(error){
-      console.log('error',error)
+    else if(error){     
       setErrors((prevErrors) => ({
         ...prevErrors,
         email: error, 

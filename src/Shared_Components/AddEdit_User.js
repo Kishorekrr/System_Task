@@ -44,6 +44,7 @@ const AddEdit_User = () => {
   };
 
   useEffect(() => {
+
     if (post_created || isEdited) {
       setOpenSnackbar(true);     
     }
@@ -75,6 +76,21 @@ const AddEdit_User = () => {
   const { id } = useParams();
 
   const isEditMode = Boolean(id);
+
+  useEffect(() => {
+    if (id) {      
+      const numericId = Number(id);
+      const existingUser = user_data.find((user) => user.id === numericId);
+      if (existingUser) {
+        setFormData({
+          firstName: existingUser.first_name,
+          lastName: existingUser.last_name,
+          email: existingUser.email,
+          avatar: existingUser.avatar,
+        });
+      }
+    }
+  }, [id]);
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
@@ -162,7 +178,7 @@ const AddEdit_User = () => {
             : null}
         </Alert>
       </Snackbar>
-      
+
       <Box sx={{ flex: 1, overflowY: "auto", padding: 3 }}>
         <Box
           display="flex"

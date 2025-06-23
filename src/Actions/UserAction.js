@@ -29,8 +29,6 @@ export const getUsers = (token) => {
         }
       );
 
-      console.log('res123', response.data.data);
-
       dispatch({ type: GET_USER_SUCCESS, payload: response.data.data });
     } catch (error) {
       dispatch({
@@ -70,8 +68,7 @@ export const reset = () => (dispatch) => {
 
 export const EditUser = (formdata, id) => {
 
-  return async (dispatch) => {
-    console.log('sendingedit',formdata,'id',id)
+  return async (dispatch) => {    
     const formattedData = {
       first_name: formdata.firstName,
       last_name: formdata.lastName,
